@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  fastapi:
+    image: jaimeiacenter/clase_devops:myimagefastapiv3
+    build: ./docker_fastapi
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+  mysql:
+    image: jaimeiacenter/clase_devops_mysq:myimagesqlv1
+    build: ./docker_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
